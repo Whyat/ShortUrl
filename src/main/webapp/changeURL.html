@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>长连接转短链接</title>
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <link rel="stylesheet" href="layui/css/modules/layer/default/layer.css">
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="layui/layui.js"></script>
+    <script src="layui/lay/modules/layer.js"></script>
+    <script src="js/clipboard.js"></script>
+</head>
+<body>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+    <legend>短地址服务</legend>
+</fieldset>
+<div class="layui-tab layui-tab-brief" lay-filter="lay-tab">
+    <ul class="layui-tab-title">
+        <li class="layui-this">默认</li>
+        <li>自定义</li>
+    </ul>
+
+    <!--默认tab-->
+    <div class="layui-tab-content" style="height: 100px;">
+        <div class="layui-tab-item layui-show">
+            <input id="longUrl" type="text" placeholder="请输入你要转化的网址">
+            <button id="btnConvert">转化</button>
+            <!--指定长度的input-->
+            <div><input id="length" type="text" placeholder="请输入指定长度默认为4"></div>
+            <div>
+                <span id="shortUrl"></span>
+                <button id="btnCopy" data-clipboard-target="#shortUrl" style="display: none">COPY</button>
+            </div>
+        </div>
+
+        <!--自定义tab-->
+        <div class="layui-tab-item">
+            <input id="longUrl2" type="text" placeholder="请输入你要转化的网址">
+            <div><input id="shortCode" type="text" placeholder="请输入转化后自定义短码"></div>
+            <div>
+                <span id="shortUrl2"></span>
+                <button id="btnCopy2" data-clipboard-target="#shortUrl2" style="display: none">COPY</button>
+            </div>
+            <button id="btnConvert2">转化</button>
+        </div>
+    </div>
+</div>
+</body>
+<script src="js/index1.js"></script>
+<script src="js/index2.js"></script>
+</html>

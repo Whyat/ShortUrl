@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="prs.whyat.dao.UrlDao">
+
+    <!--根据长url查询条数，判断是否存在该记录-->
+    <select id="countByLongUrl" parameterType="Url" resultType="java.lang.Integer">
+        select count(1) from url where long_url = #{longUrl}
+    </select>
+
+    <!--根据短url查询条数，判断是否存在该记录-->
+    <select id="countByShortUrl" parameterType="Url" resultType="java.lang.Integer">
+        select count(1) from url where short_url = #{shortUrl}
+    </select>
+
+    <!--根据长链查询短链-->
+    <select id="selectShortUrlByLongUrl" resultType="prs.whyat.entity.Url">
+        select short_url from url
+        where long_url = #{longUrl}
+    </select>
+
+    <!--根据长链查询短链-->
+    <select id="selectByShortUrl" resultType="prs.whyat.entity.Url">
+        select * from url
+        where short_url = #{shortUrl}
+    </select>
+
+
+    <!--插入一条数据,获取插入id-->
+    <insert id="insertOne" parameterType="Url">
+        insert into url (long_url,short_url,length,type)
+        values (#{longUrl},#{shortUrl},#{length}
+        <if test='type        != null'>,#{type}</if>
+        <if test='type        == null'>,'default'</if>)
+        <!--获取插入进去的那条记录id-->
+        <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <!--动态更新-->
+    <update id="updateDynamically" parameterType="Url">
+        update url
+        <set>
+            <if test='longUrl        != null'>long_url = #{longUrl},</if>
+            <if test='shortUrl        != null'>short_url = #{shortUrl},</if>
+            <if test="length   != null">length = #{length},</if>
+            <if test="visitCount     != null">visit_count = #{visitCount}</if>
+        </set>
+        where id = #{id} or short_url=#{shortUrl}
+    </update>
+
+    <!--查询是自定义短码的记录id-->
+    <select id="selectIdByCustomType" resultType="java.lang.Integer">
+        select id from url where type ='custom'
+    </select>
+
+</mapper>

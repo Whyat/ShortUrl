@@ -1,0 +1,39 @@
+.box{
+    height: 200px;
+    width: 100%;
+}
+.table{
+    width: 100%;
+    height: 100px;
+}
+.line{
+    margin-top: 40px;
+}
+th{
+    text-align: center;
+}
+td{
+
+}
+#tr1{
+    text-align: center;
+}
+#tr2{
+    text-align: center;
+ }
+#tr2:hover{
+    background-color: white;
+}
+#table1{
+    height: 100%;
+}
+
+.containerBox{
+    width: 90%;
+    height: 90%;
+    margin: 50px auto;
+}
+
+.cannot-click{
+     background-color: #8D8D8D;
+}

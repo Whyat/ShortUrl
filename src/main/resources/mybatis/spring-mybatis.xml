@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <settings>
+            <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <typeAliases>
+        <typeAlias type="prs.whyat.entity.Url" alias="Url"/>
+    </typeAliases>
+
+    <mappers>
+        <mapper resource="/mybatis/mapper/UrlMapper.xml"/>
+    </mappers>
+
+</configuration>
