@@ -15,4 +15,15 @@ public class ConvertTest {
         String shortCode = Converter.shorten(1,6);
         System.out.println(shortCode);
     }
+
+    //web项目不好测试，开发时用了postman模拟网络请求,可以通过可以通过ip地址访问该demo
+
+    // 1
+    // 2.
+    // 3.
+    // 4.
+    // 5.
+
+    //
+
 }
