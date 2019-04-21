@@ -11,20 +11,9 @@ public class Url {
     private String updateTime;//更新时间
     private String type;//自定义还是默认类型
     private Integer visitCount=0;//访问次数
+    private Integer maxCount=-1;//最大访问次数
+    private String password;//访问密码
 
-    @Override
-    public String toString() {
-        return "Url{" +
-                "id=" + id +
-                ", longUrl='" + longUrl + '\'' +
-                ", shortUrl='" + shortUrl + '\'' +
-                ", length=" + length +
-                ", createTime='" + createTime + '\'' +
-                ", updateTime='" + updateTime + '\'' +
-                ", type='" + type + '\'' +
-                ", visitCount=" + visitCount +
-                '}';
-    }
 
     public Long getId() {
         return id;
@@ -88,5 +77,21 @@ public class Url {
 
     public void setVisitCount(Integer visitCount) {
         this.visitCount = visitCount;
+    }
+
+    public Integer getMaxCount() {
+        return maxCount;
+    }
+
+    public void setMaxCount(Integer maxCount) {
+        this.maxCount = maxCount;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

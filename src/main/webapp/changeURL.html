@@ -24,19 +24,25 @@
     <div class="layui-tab-content" style="height: 100px;">
         <div class="layui-tab-item layui-show">
             <input id="longUrl" type="text" placeholder="请输入你要转化的网址">
-            <button id="btnConvert">转化</button>
             <!--指定长度的input-->
-            <div><input id="length" type="text" placeholder="请输入指定长度默认为4"></div>
+            <div><input id="length" type="text" placeholder="短码长度，默认为4,可选"></div>
+            <div><input id="maxCount" type="text" placeholder="最大访问次数,默认无限,可选"></div>
+            <div><input id="password" type="text" placeholder="访问密码,可选"></div>
+            <!--默认隐藏-->
             <div>
                 <span id="shortUrl"></span>
                 <button id="btnCopy" data-clipboard-target="#shortUrl" style="display: none">COPY</button>
             </div>
+            <button id="btnConvert">转化</button>
         </div>
 
         <!--自定义tab-->
         <div class="layui-tab-item">
             <input id="longUrl2" type="text" placeholder="请输入你要转化的网址">
             <div><input id="shortCode" type="text" placeholder="请输入转化后自定义短码"></div>
+            <div><input id="maxCount2" type="text" placeholder="最大访问次数,默认无限,可选"></div>
+            <div><input id="password2" type="text" placeholder="访问密码,可选"></div>
+            <!--默认隐藏-->
             <div>
                 <span id="shortUrl2"></span>
                 <button id="btnCopy2" data-clipboard-target="#shortUrl2" style="display: none">COPY</button>

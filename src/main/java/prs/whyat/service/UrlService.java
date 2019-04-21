@@ -10,7 +10,7 @@ import prs.whyat.entity.Url;
  */
 public interface UrlService {
     //转短链接
-    Url converToShort(Url url);
+    Integer converToShort(Url url);
 
     //自定义转化短链接
     Integer customConverToShort(Url url);

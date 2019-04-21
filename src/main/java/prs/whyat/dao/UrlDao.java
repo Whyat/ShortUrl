@@ -24,5 +24,5 @@ public interface UrlDao {
     Url selectByShortUrl(Url url);
 
     //查询自定义短码类型的id
-    List<Integer> selectIdByCustomType();
+    List<Long> selectIdByCustomType();
 }

@@ -22,7 +22,7 @@ public class UrlServiceImpl implements UrlService {
     UrlDao urlDao;
 
     @Override
-    public Url converToShort(Url url) {
+    public Integer converToShort(Url url) {
         //1.查询数据库是否存在该长连接记录
         Integer count = urlDao.countByLongUrl(url);
         //2.根据存在与否判断
@@ -30,11 +30,12 @@ public class UrlServiceImpl implements UrlService {
             //不存在的话插入该长url并返回id
             Long.valueOf(urlDao.insertOne(url));
             //根据url获取id计算短链
-            url.setShortUrl(Converter.shorten(url.getId(), url.getLength()));
+            long id = url.getId();
+            url.setShortUrl(Converter.shorten(id, url.getLength()));
             //判断短链是否存在，
             if (urlDao.countByShortUrl(url) > 0) {
                 //存在则从url属性type=custom的记录取id计算短链
-                List<Integer> ids = urlDao.selectIdByCustomType();
+                List<Long> ids = urlDao.selectIdByCustomType();
                 for (int i = 0; i < ids.size(); i++) {
                     url.setShortUrl(Converter.shorten(ids.get(i), url.getLength()));
                     if (urlDao.countByShortUrl(url) == 0) {
@@ -46,9 +47,12 @@ public class UrlServiceImpl implements UrlService {
             urlDao.updateDynamically(url);
         } else {
             //存在的话直接查询相应短链并返回
-            url = urlDao.selectShortUrlByLongUrl(url.getLongUrl());
+            Url url1 = urlDao.selectShortUrlByLongUrl(url.getLongUrl());
+            url.setShortUrl(url1.getShortUrl());
+            url.setVisitCount(url1.getVisitCount());
+            return 1;
         }
-        return url;
+        return 0;
     }
 
     @Override
@@ -62,6 +66,7 @@ public class UrlServiceImpl implements UrlService {
             if (shortCount == 0) {
                 //不存在的话插入该url记录
                 Long.valueOf(urlDao.insertOne(url));
+                return 0;
             }else{
                 //自定义短码已被占用
                 url.setShortUrl(null);
@@ -69,9 +74,11 @@ public class UrlServiceImpl implements UrlService {
             }
         } else {
             //存在的话直接查询相应短链并返回
-            url = urlDao.selectShortUrlByLongUrl(url.getLongUrl());
+            Url url1 = urlDao.selectShortUrlByLongUrl(url.getLongUrl());
+            url.setShortUrl(url1.getShortUrl());
+            url.setVisitCount(url1.getVisitCount());
+            return 1;
         }
-        return 0;
     }
 
     @Override

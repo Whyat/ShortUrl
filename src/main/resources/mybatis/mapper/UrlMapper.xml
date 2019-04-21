@@ -16,7 +16,7 @@
 
     <!--根据长链查询短链-->
     <select id="selectShortUrlByLongUrl" resultType="prs.whyat.entity.Url">
-        select short_url from url
+        select * from url
         where long_url = #{longUrl}
     </select>
 
@@ -29,10 +29,10 @@
 
     <!--插入一条数据,获取插入id-->
     <insert id="insertOne" parameterType="Url">
-        insert into url (long_url,short_url,length,type)
+        insert into url (long_url,short_url,length,type,max_count,password)
         values (#{longUrl},#{shortUrl},#{length}
         <if test='type        != null'>,#{type}</if>
-        <if test='type        == null'>,'default'</if>)
+        <if test='type        == null'>,'default'</if>,#{maxCount},#{password})
         <!--获取插入进去的那条记录id-->
         <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
             SELECT LAST_INSERT_ID()
@@ -52,7 +52,7 @@
     </update>
 
     <!--查询是自定义短码的记录id-->
-    <select id="selectIdByCustomType" resultType="java.lang.Integer">
+    <select id="selectIdByCustomType" resultType="java.lang.Long">
         select id from url where type ='custom'
     </select>
 
