@@ -6,6 +6,8 @@
 > * 长链长度
 > * 自定义短链接
 > * 访问次数，访问的时候自增
+> * 设置最大访问次数
+> * 设置访问密码
 
 **流程图**
 ![Image text](https://raw.githubusercontent.com/Whyat/ShortUrl/master/img-folder/%E6%B5%81%E7%A8%8B.png)
